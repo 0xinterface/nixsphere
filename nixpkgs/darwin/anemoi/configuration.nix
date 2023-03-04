@@ -2,6 +2,20 @@
 {
   services.nix-daemon.enable = true;
 
+  nix = {
+    package = pkgs.nix;
+
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "1password-cli"
+    "vscode"
+    "vscode-extension-ms-vscode-remote-remote-ssh"
+  ];
+
   security.pam.enableSudoTouchIdAuth = true;
   system.defaults = {
     NSGlobalDomain.InitialKeyRepeat = 10;
@@ -38,6 +52,7 @@
       ../../home-manager/modules/git.nix
       ../../home-manager/modules/common.nix
       ../../home-manager/modules/zsh.nix
+      ../../home-manager/modules/vscode.nix
     ];
   };
   
@@ -57,7 +72,6 @@
       "keka"
       "loopback"
       "raycast"
-      "visual-studio-code"
       "transmit"
     ];
   };

@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, libs, ... }:
+{ config, pkgs, pkgs-unstable, lib, libs, ... }:
 {
 
   # https://github.com/nix-community/nix-direnv#via-home-manager
@@ -27,6 +27,7 @@
     iperf
     sops
     yubikey-manager
+    vscode
     neovim
     exa
     tree
